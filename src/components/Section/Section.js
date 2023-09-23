@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styles from './Section.module.css';
 
-class Section extends Component {
-  render() {
-    const { title, children } = this.props;
+function Section(props) {
+  const [title, setTitle] = useState(props.title);
 
-    return (
-      <div className={styles.section_container}>
-        <h2 className={styles.section_title}>{title}</h2>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div className={styles.section_container}>
+      <h2 className={styles.section_title}>{title}</h2>
+      {props.children}
+    </div>
+  );
 }
+
 export default Section;
