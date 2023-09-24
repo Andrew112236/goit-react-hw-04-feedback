@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Section.module.css';
 
 function Section(props) {
-  const [title, setTitle] = useState(props.title);
+  const [title] = useState(props.title);
 
   return (
     <div className={styles.section_container}>

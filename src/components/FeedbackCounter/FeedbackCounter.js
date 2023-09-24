@@ -1,40 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FeedbackCounter.module.css';
 
 function FeedbackCounter(props) {
-  const [feedbackCounts, setFeedbackCounts] = useState({
+  const { handleButtonClick } = props;
+
+  const [feedbackState, setFeedbackState] = useState({
     good: 0,
     neutral: 0,
     bad: 0,
   });
-  const handleButtonClick = type => {
-    setFeedbackCounts(prevCounts => ({
-      ...prevCounts,
-      [type]: prevCounts[type] + 1,
+
+  useEffect(() => {}, [feedbackState]);
+
+  const handleButtonWithUpdate = category => {
+    setFeedbackState(prevFeedbackState => ({
+      ...prevFeedbackState,
+      [category]: prevFeedbackState[category] + 1,
     }));
+    handleButtonClick(category);
   };
+
   return (
     <div className={styles.buttons_container}>
       <button
         className={styles.button}
-        onClick={() => handleButtonClick('good')}
+        onClick={() => handleButtonWithUpdate('good')}
       >
-        <p className={styles.emoji}>&#128512;</p>
-        <p>Good: {feedbackCounts.good}</p>
+        <p className={styles.emoji}>Good</p>
       </button>
       <button
         className={styles.button}
-        onClick={() => handleButtonClick('neutral')}
+        onClick={() => handleButtonWithUpdate('neutral')}
       >
-        <p className={styles.emoji}>&#x1F610;</p>
-        <p>Neutral: {feedbackCounts.neutral}</p>
+        <p className={styles.emoji}>Neutral</p>
       </button>
       <button
         className={styles.button}
-        onClick={() => handleButtonClick('bad')}
+        onClick={() => handleButtonWithUpdate('bad')}
       >
-        <p className={styles.emoji}>&#x1F624;</p>
-        <p>Bad: {feedbackCounts.bad}</p>
+        <p className={styles.emoji}>Bad</p>
       </button>
     </div>
   );

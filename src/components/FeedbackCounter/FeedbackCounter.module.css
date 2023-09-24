@@ -1,18 +1,20 @@
 .buttons_container {
   display: flex;
   gap: 20px;
-  padding-bottom: 10px;
   padding-top: 10px;
 }
 
 .button {
-  border-radius: 50%;
   cursor: pointer;
+  border-radius: 50%;
+  border-color: blue;
+  background-color: blue;
 }
 
 .emoji {
-  font-size: 50px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }

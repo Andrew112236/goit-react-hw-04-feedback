@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Statistics.module.css';
 
 function Statistics(props) {
   const { good, neutral, bad } = props;
   const [positivePercentage, setPositivePercentage] = useState(0);
   const [negativePercentage, setNegativePercentage] = useState(0);
+
+  useEffect(() => {
+    const totalFeedback = good + neutral + bad;
+    if (totalFeedback > 0) {
+      const positivePercentageValue = (good / totalFeedback) * 100;
+      const negativePercentageValue = (bad / totalFeedback) * 100;
+      setPositivePercentage(positivePercentageValue);
+      setNegativePercentage(negativePercentageValue);
+    }
+  }, [good, neutral, bad]);
 
   return (
     <div className={styles.statistics_container}>

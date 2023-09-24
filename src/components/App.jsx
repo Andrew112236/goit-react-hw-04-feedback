@@ -36,7 +36,7 @@ function App() {
 
       <Section>
         {total === 0 ? (
-          <Notification message="There is no feedback.&#x1F622; " />
+          <Notification message="There is no feedback. " />
         ) : (
           <Statistics
             good={feedback.good}
